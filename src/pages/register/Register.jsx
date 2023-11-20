@@ -35,7 +35,7 @@ const Register = () => {
         window.alert("Passwords didn't match");
       } else {
           localStorage.setItem("emailId", JSON.stringify(user.email));
-          
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
           axios
             .post(`${SERVER_URL}/${activeTab}/register`, user)
 

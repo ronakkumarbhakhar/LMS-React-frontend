@@ -6,6 +6,7 @@ import aboutPic from "../images/about.png"
 import UpdateProfile from "./UpdateProfile"
 import { SERVER_URL } from '../constants'
 
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const About = () => {
 
   const navigate = useNavigate();

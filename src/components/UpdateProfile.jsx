@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../css/updateProfile.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants'
-
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 function UpdateProfile() {
 
     const [showModal, setShowModal] = useState(false);

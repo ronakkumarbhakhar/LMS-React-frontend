@@ -5,6 +5,7 @@ import "../css/about.css"
 import AddClothes from './AddClothes'
 import { SERVER_URL } from '../constants'
 
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const Dashboard = () => {
 
     const getClothes = (clothes) => {

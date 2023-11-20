@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/verifyOtp.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
-
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const VerifyOtp = () => {
     const navigate = useNavigate();
 

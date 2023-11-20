@@ -22,7 +22,8 @@ const Login = () => {
     const loginUser = async (e) => {
         e.preventDefault();
 
-        const config = { withCredentials: true }
+        const config = { withCredentials: false }
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         axios.post(`${SERVER_URL}/user/login`, { email, password }, config)
 
             .then((res) => {

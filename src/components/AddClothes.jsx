@@ -3,6 +3,7 @@ import axios from 'axios';
 import "../css/addClothes.css"
 import { SERVER_URL } from '../constants'
 
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const AddClothes = () => {
 
     const [showModal, setShowModal] = useState(false);

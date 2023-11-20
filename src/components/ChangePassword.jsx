@@ -5,6 +5,7 @@ import "../css/changePassword.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
 
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const ChangePassword = () => {
 
     const navigate = useNavigate();
