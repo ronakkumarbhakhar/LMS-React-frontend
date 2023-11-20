@@ -1,0 +1,1 @@
+export const SERVER_URL="https://lms-nq5d.onrender.com";
