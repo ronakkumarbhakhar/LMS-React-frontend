@@ -4,6 +4,7 @@ import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import "../css/changePassword.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import Cookies from 'js-cookie'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const ChangePassword = () => {
@@ -27,7 +28,7 @@ const ChangePassword = () => {
                 window.alert("Passwords didn't match");
                 window.location.reload(true);
             } else {
-                axios.post(`${SERVER_URL}/changePassword`, { password, cpassword, email })
+                axios.post(`${SERVER_URL}/changePassword`, { password, cpassword, email },{ headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
                     .then((res) => {
                         console.log(res);
                         window.alert("Password Changed Successfully");

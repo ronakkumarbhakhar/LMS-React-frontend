@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import "../css/forgotPassword.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import Cookies from 'js-cookie'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const ForgotPassword = () => {
@@ -16,7 +17,7 @@ const ForgotPassword = () => {
 
         navigate("/resetPassword");
 
-        axios.post(`${SERVER_URL}/forgotPassword`, { email })
+        axios.post(`${SERVER_URL}/forgotPassword`, { email },{ headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
             .then((res) => {
                 console.log(res);
             })

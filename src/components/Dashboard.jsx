@@ -4,6 +4,7 @@ import axios from "axios"
 import "../css/about.css"
 import AddClothes from './AddClothes'
 import { SERVER_URL } from '../constants'
+import Cookies from 'js-cookie'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const Dashboard = () => {
@@ -31,8 +32,8 @@ const Dashboard = () => {
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
-        const config = { withCredentials: true }
-        axios.get(`${SERVER_URL}/getData`, config)
+        const config = { withCredentials: false }
+        axios.get(`${SERVER_URL}/getData`, { headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
             .then((result) => {
                 setUserData(result.data);
                 console.log(result.data);

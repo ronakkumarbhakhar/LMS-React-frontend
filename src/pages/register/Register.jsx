@@ -43,7 +43,7 @@ const Register = () => {
               console.log(res);
               window.alert(" Registration successfull");
 
-              navigate("/verifyOtp");
+              navigate("/login");
             })
             .catch((err) => {
               console.log(err);

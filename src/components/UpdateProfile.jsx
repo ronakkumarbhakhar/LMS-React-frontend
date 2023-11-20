@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "../css/updateProfile.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants'
+import Cookies from 'js-cookie'
+
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 function UpdateProfile() {
 
@@ -22,8 +24,8 @@ function UpdateProfile() {
                 setImageURL(reader.result);
             };
 
-            const config = { withCredentials: true }
-            axios.post(`${SERVER_URL}/updateProfile`, { data: imageURL }, config)
+            const config = { withCredentials: false }
+            axios.post(`${SERVER_URL}/updateProfile`, { data: imageURL }, {headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
                 .then(res => console.log(res))
                 .catch(err => console.log(err));
 

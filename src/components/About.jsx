@@ -5,6 +5,7 @@ import "../css/about.css"
 import aboutPic from "../images/about.png"
 import UpdateProfile from "./UpdateProfile"
 import { SERVER_URL } from '../constants'
+import Cookies from 'js-cookie'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const About = () => {
@@ -14,15 +15,15 @@ const About = () => {
   const [userData, setUserData] = useState({});
 
   useEffect(() => {
-    const config = { withCredentials: true }
-    axios.get(`${SERVER_URL}/getData`, config)
+    const config = { withCredentials: false }
+    axios.get(`${SERVER_URL}/getData`, { headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
       .then((result) => {
         setUserData(result.data);
         console.log(result.data);
 
       }).catch((err) => {
         console.log(err);
-        navigate("/login");
+        // navigate("/login");
       });
   }, []);
 

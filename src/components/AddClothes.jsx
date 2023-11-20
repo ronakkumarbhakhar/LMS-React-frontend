@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import "../css/addClothes.css"
 import { SERVER_URL } from '../constants'
+import Cookies from 'js-cookie'
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const AddClothes = () => {
@@ -18,8 +19,8 @@ const AddClothes = () => {
 
     const handleSubmit = async () => {
 
-        const config = { withCredentials: true }
-        axios.post(`${SERVER_URL}/addClothes`, user, config)
+        const config = { withCredentials: false }
+        axios.post(`${SERVER_URL}/addClothes`, user,{ headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
             .then((res) => {
                 console.log(res);
                 window.alert("Clothes Added Successfully");

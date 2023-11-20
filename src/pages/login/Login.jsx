@@ -7,6 +7,7 @@ import signin from "../../images/signin-image.jpg"
 import "../../css/loginOrSignup.css"
 import { UserContext } from "../../App"
 import { SERVER_URL } from '../../constants'
+import Cookies from 'js-cookie';
 
 
 const Login = () => {
@@ -24,10 +25,10 @@ const Login = () => {
 
         const config = { withCredentials: false }
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.post(`${SERVER_URL}/user/login`, { email, password }, config)
-
+        axios.post(`${SERVER_URL}/user/login`, { email, password })
             .then((res) => {
                 console.log(res);
+                Cookies.set('jwtoken', res.data.token); 
                 dispatch({ type: "USER", payload: true });
                 console.log("Login Successfull");
 

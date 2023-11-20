@@ -3,6 +3,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/verifyOtp.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import Cookies from 'js-cookie'
+
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const ResetPassword = () => {
@@ -13,7 +15,7 @@ const ResetPassword = () => {
 
     const handleSubmit = async () => {
 
-        axios.post(`${SERVER_URL}/verifyOtp`, { otp, email })
+        axios.post(`${SERVER_URL}/verifyOtp`, { otp, email },{ headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
             .then((res) => {
                 console.log(res);
 

@@ -3,6 +3,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import "../css/verifyOtp.css"
 import axios from 'axios';
 import { SERVER_URL } from '../constants';
+import Cookies from 'js-cookie'
+
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const VerifyOtp = () => {
     const navigate = useNavigate();
@@ -12,7 +14,7 @@ const VerifyOtp = () => {
 
     const handleSubmit = async () => {
 
-        axios.post(`${SERVER_URL}/verifyOtp`, { otp, email })
+        axios.post(`${SERVER_URL}/verifyOtp`, { otp, email },{withCredentials:false},{ headers: {"Authorization" : `${Cookies.get("jwtoken")}`} })
             .then((res) => {
                 console.log(res);
                 window.alert("Verification Completed");
@@ -27,7 +29,7 @@ const VerifyOtp = () => {
     }
 
     const handleResend = async () => {
-        axios.post(`${SERVER_URL}/reSendOtp`, { email })
+        axios.post(`${SERVER_URL}/reSendOtp`, { email },{ headers: {"Authorization" : `Bearer ${Cookies.get("jwtoken")}`} })
             .then((res) => {
                 console.log(res);
                 window.alert("OTP sent successfully");
